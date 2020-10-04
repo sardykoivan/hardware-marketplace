@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+db_version:
+    path: /test/db
+    controller: App\Controller\TestController::dbVersion

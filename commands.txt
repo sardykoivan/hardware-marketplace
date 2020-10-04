@@ -1,0 +1,1 @@
+docker exec -t marketplace_fpm_1 composer install
