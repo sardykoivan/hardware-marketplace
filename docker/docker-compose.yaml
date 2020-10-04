@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Nginx.Dockerfile
+    ports:
+      - '8099:80'
+    depends_on:
+      - fpm
+    volumes:
+      - ../:/var/www/app
+  fpm:
+    build:
+      context: ./fpm
+      dockerfile: Fpm.Dockerfile
+    volumes:
+      - ../:/var/www/app
+      - composer:/root/.composer/cache
+
+volumes:
+  composer:
