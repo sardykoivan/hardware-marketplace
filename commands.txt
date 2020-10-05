@@ -1,1 +1,11 @@
+# обновление пакетов
 docker exec -t marketplace_fpm_1 composer install
+
+# просмотр маппинга сущностей
+docker exec -t marketplace_fpm_1 php bin/console doctrine:mapping:info
+
+# применить миграции
+docker exec -it marketplace_fpm_1 php bin/console doctrine:migrations:migrate
+
+# откатить миграции
+docker exec -it marketplace_fpm_1 php bin/console doctrine:migrations:rollup
