@@ -15,7 +15,7 @@ class ProductController extends AbstractController
 {
     /**
      *
-     * @Route("/api/products", methods={"GET","POST"})
+     * @Route("/api/products", methods={"POST"})
      *
      * @param Request $request
      * @param UseCase\Create\Handler $handler
