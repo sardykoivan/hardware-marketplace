@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="partners",  uniqueConstraints={
- *     @ORM\UniqueConstraint(columns={"name"})
+ *     @ORM\UniqueConstraint(columns={"email"})
  * }))
  */
 class Partner
@@ -59,6 +59,27 @@ class Partner
         $partner->status = self::STATUS_WAIT;
 
         return $partner;
+    }
+
+    public function activate(): self
+    {
+        if ($this->isActive()) {
+            throw new \DomainException('User is already active.');
+        }
+
+        $this->status = self::STATUS_ACTIVE;
+
+        return $this;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === self::STATUS_ACTIVE;
+    }
+
+    public function isWait(): bool
+    {
+        return $this->status === self::STATUS_WAIT;
     }
 
     public function getId(): Id

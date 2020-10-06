@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Model\Marketplace\Entity\Partner;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityNotFoundException;
 
 class PartnerRepository
 {
@@ -20,6 +21,15 @@ class PartnerRepository
     public function add(Partner $partner)
     {
         $this->em->persist($partner);
+    }
+
+    public function get(Id $id): Partner
+    {
+        /** @var Partner $partner */
+        if (!$partner = $this->repo->find($id->getValue())) {
+            throw new EntityNotFoundException('User is not found.');
+        }
+        return $partner;
     }
 
     public function hasByEmail(Email $email): bool
