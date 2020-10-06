@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
+use App\ReadModel\Marketplace\Partner\PartnerFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,6 +14,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class PartnerController extends AbstractController
 {
+    private $partners;
+
+    public function __construct(PartnerFetcher $partners)
+    {
+        $this->partners = $partners;
+    }
+
     /**
      *
      * @Route("/api/partners/signup/request", methods={"POST"})
@@ -49,5 +57,23 @@ class PartnerController extends AbstractController
         $handler->handle($command);
 
         return $this->json(['status' => true],200);
+    }
+
+    /**
+     * @Route("/api/partners/{id}", methods={"GET"})
+     *
+     * @param string $id
+     * @return JsonResponse
+     */
+    public function show(string $id)
+    {
+        $partner = $this->partners->get($id);
+
+        return $this->json([
+            'id' => $partner->getId()->getValue(),
+            'name' => $partner->getName(),
+            'company_name' => $partner->getCompanyName(),
+            'email' => $partner->getEmail()->getValue(),
+        ]);
     }
 }

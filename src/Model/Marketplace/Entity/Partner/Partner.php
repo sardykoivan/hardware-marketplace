@@ -91,4 +91,14 @@ class Partner
     {
         return $this->name;
     }
+
+    public function getCompanyName(): string
+    {
+        return $this->company_name;
+    }
+
+    public function getEmail(): Email
+    {
+        return $this->email;
+    }
 }
