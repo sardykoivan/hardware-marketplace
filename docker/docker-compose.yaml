@@ -17,6 +17,19 @@ services:
     volumes:
       - ../:/var/www/app
       - composer:/root/.composer/cache
+    depends_on:
+      - pgsql
+  pgsql:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: marketplace
+    ports:
+      - '54321:5432'
+    volumes:
+      - pg-marketplace:/var/lib/postgresql/data
 
 volumes:
   composer:
+  pg-marketplace:
+    external: true
