@@ -26,7 +26,7 @@ class Handler
         $email = new Email($command->email);
 
         if ($this->partners->hasByEmail($email)) {
-            throw new \DomainException('User with this email already exists.');
+            throw new \DomainException('Partner with this email already exists.');
         }
 
         $partner = Partner::signUpByEmail(

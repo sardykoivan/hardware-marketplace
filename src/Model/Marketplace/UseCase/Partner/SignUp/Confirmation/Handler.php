@@ -6,7 +6,7 @@ namespace App\Model\Marketplace\UseCase\Partner\SignUp\Confirmation;
 
 use App\Model\Flusher;
 use App\Model\Marketplace\Entity\Partner\Email;
-use App\Model\Marketplace\Entity\Partner\Partner;
+use App\Model\Marketplace\Entity\Partner\User;
 use App\Model\Marketplace\Entity\Partner\PartnerRepository;
 use App\Model\Marketplace\Entity\Partner\Id;
 

@@ -27,7 +27,7 @@ class PartnerRepository
     {
         /** @var Partner $partner */
         if (!$partner = $this->repo->find($id->getValue())) {
-            throw new EntityNotFoundException('User is not found.');
+            throw new EntityNotFoundException('Partner is not found.');
         }
         return $partner;
     }

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Marketplace\Entity\Partner;
+namespace App\Model\Purchase\Entity\Customer;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
 class EmailType extends StringType
 {
-    public const NAME = 'marketplace_partner_email';
+    public const NAME = 'purchase_customer_email';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {

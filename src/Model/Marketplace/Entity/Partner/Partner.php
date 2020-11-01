@@ -64,7 +64,7 @@ class Partner
     public function activate(): self
     {
         if ($this->isActive()) {
-            throw new \DomainException('User is already active.');
+            throw new \DomainException('Partner is already active.');
         }
 
         $this->status = self::STATUS_ACTIVE;

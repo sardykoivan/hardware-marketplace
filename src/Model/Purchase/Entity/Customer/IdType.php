@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Marketplace\Entity\Partner;
+namespace App\Model\Purchase\Entity\Customer;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\StringType;
+use Doctrine\DBAL\Types\GuidType;
 
-class EmailType extends StringType
+class IdType extends GuidType
 {
-    public const NAME = 'marketplace_partner_email';
+    public const NAME = 'purchase_customer_id';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value instanceof Email ? $value->getValue() : $value;
+        return $value instanceof Id ? $value->getValue() : $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return !empty($value) ? new Email($value) : null;
+        return !empty($value) ? new Id($value) : null;
     }
 
     public function getName(): string
@@ -28,6 +28,6 @@ class EmailType extends StringType
 
     public function requiresSQLCommentHint(AbstractPlatform $platform) : bool
     {
-        return true;
+        return false;
     }
 }
