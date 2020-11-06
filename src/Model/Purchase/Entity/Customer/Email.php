@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Model\Purchase\Entity\Customer;
 
+use App\Model\EmailInterface;
 use Webmozart\Assert\Assert;
 
-class Email
+class Email implements EmailInterface
 {
     private $value;
 
@@ -24,7 +25,7 @@ class Email
         return $this->value;
     }
 
-    public function isEqual(self $other): bool
+    public function isEqual(EmailInterface $other): bool
     {
         return $this->getValue() === $other->getValue();
     }

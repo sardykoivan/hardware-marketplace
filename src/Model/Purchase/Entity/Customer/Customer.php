@@ -14,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Customer
 {
+    const STATUS_WAIT = 'wait';
+
     /**
      * @ORM\Column(type="purchase_customer_id")
      * @ORM\Id
@@ -21,22 +23,41 @@ class Customer
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $lastname;
 
     /**
-     * @ORM\Column(type="marketplace_partner_email", length=255)
+     * @ORM\Column(type="purchase_customer_email", length=255)
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="string", name="signup_token", length=255, nullable=true)
+     */
+    private $signUpToken;
 
-    private function __construct(Id $id, string $firstname, string $lastname, Email $email)
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $status;
+
+
+    public static function createByEmail(Email $email, string $token)
+    {
+        $customer = new Customer(Id::next(), $email);
+        $customer->status = self::STATUS_WAIT;
+        $customer->signUpToken = $token;
+
+        return $customer;
+    }
+
+    private function __construct(Id $id, Email $email, ?string $firstname = null, ?string $lastname = null)
     {
         $this->id = $id;
         $this->firstname = $firstname;
@@ -62,5 +83,10 @@ class Customer
     public function getEmail(): Email
     {
         return $this->email;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

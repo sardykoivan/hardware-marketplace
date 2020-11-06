@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ReadModel\Marketplace\Partner;
 
-use App\Model\Marketplace\Entity\Partner\User;
+use App\Model\Marketplace\Entity\Partner\Partner;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 use App\ReadModel\NotFoundException;
@@ -18,18 +18,18 @@ class PartnerFetcher
     public function __construct(Connection $connection, EntityManagerInterface $em)
     {
         $this->connection = $connection;
-        $this->partners = $em->getRepository(User::class);
+        $this->partners = $em->getRepository(Partner::class);
         $this->em = $em;
     }
 
     /**
      * @param string $id
-     * @return User
+     * @return Partner
      */
-    public function get(string $id): User
+    public function get(string $id): Partner
     {
         if (!$partner = $this->partners->find($id)) {
-            throw new NotFoundException('Customer is not found');
+            throw new NotFoundException('Partner is not found');
         }
 
         return $partner;

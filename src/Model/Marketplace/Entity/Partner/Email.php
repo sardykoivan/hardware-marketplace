@@ -6,7 +6,9 @@ namespace App\Model\Marketplace\Entity\Partner;
 
 use Webmozart\Assert\Assert;
 
-class Email
+use App\Model\EmailInterface;
+
+class Email implements EmailInterface
 {
     private $value;
 
@@ -24,7 +26,7 @@ class Email
         return $this->value;
     }
 
-    public function isEqual(self $other): bool
+    public function isEqual(EmailInterface $other): bool
     {
         return $this->getValue() === $other->getValue();
     }
