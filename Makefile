@@ -1,4 +1,4 @@
-init: create-volume build run
+init: build run migrate
 
 build: composer-install
 	cd docker && docker-compose build
@@ -15,5 +15,6 @@ logs:
 composer-install:
 	cd docker && docker-compose run --rm fpm composer install
 
-create-volume:
-	docker volume create pg-marketplace
+migrate:
+	docker exec -it marketplace_fpm_1 php bin/console make:migration
+	docker exec -it marketplace_fpm_1 php bin/console doctrine:migrations:migrate

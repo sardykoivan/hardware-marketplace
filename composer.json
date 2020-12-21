@@ -23,7 +23,10 @@
     "webmozart/assert": "dev-master"
   },
   "require-dev": {
-    "symfony/maker-bundle": "^1.0@dev"
+    "symfony/browser-kit": "5.2.x-dev",
+    "symfony/css-selector": "5.2.x-dev",
+    "symfony/maker-bundle": "^1.0@dev",
+    "symfony/phpunit-bridge": "5.x-dev"
   },
   "config": {
     "optimize-autoloader": true,

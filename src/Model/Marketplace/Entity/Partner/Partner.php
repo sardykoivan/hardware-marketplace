@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Marketplace\Entity\Partner;
 
+use App\Model\Marketplace\Entity\Partner\Email;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
